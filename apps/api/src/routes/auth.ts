@@ -91,6 +91,7 @@ app.post('/register', authRateLimit, zValidator('json', registerSchema), async (
       emailVerified: user.emailVerified,
       avatarUrl: user.avatarUrl,
     },
+    token, // Include token for mobile clients
   });
 });
 
@@ -125,6 +126,7 @@ app.post('/login', authRateLimit, zValidator('json', loginSchema), async (c) => 
       emailVerified: user.emailVerified,
       avatarUrl: user.avatarUrl,
     },
+    token, // Include token for mobile clients
   });
 });
 
@@ -171,6 +173,7 @@ app.get('/magic-link/verify', async (c) => {
       emailVerified: result.user.emailVerified,
       avatarUrl: result.user.avatarUrl,
     },
+    token: result.sessionToken, // Include token for mobile clients
   });
 });
 
